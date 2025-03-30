@@ -4,23 +4,15 @@ export default class Player {
   constructor(assets) {
     const asset = assets["xbot_idle.fbx"];
 
-    const a = (name) => {
-      try {
-        return assets[name + ".fbx"].animations[0];
-      } catch (e) {
-        return null;
-      }
-    };
-
     this.animations = [
       "running",
       "walking",
       "walking_backwards",
       "jump",
     ].reduce(
-      (acc, cur) => ({
+      (acc, name) => ({
         ...acc,
-        [cur]: a(cur),
+        [name]: assets[name + ".fbx"].animations[0],
       }),
       { idle: asset.animations[0] },
     );
